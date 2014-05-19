@@ -63,25 +63,31 @@ export PATH="$HOME/.bin:$PATH"
 export PATH=".git/safe/../../bin:$PATH"
 
 # Syntax Highlighting
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -e $HOME/.zsh/plugins/zsh-syntax-highlighting ]; then
+  source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Setup History Suggestions
-source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-# bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+if [ -e $HOME/.zsh/plugins/zsh-history-substring-search ]; then
+  source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+  zmodload zsh/terminfo
+  # bind UP and DOWN arrow keys
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+fi
 
 # Setup Autosuggestions
-source ~/.zsh/plugins/zsh-autosuggestions/autosuggestions.zsh
-# Enable autosuggestions automatically
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-# use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-# zsh-autosuggestions is designed to be unobtrusive)
-bindkey '^T' autosuggest-toggle
+if [ -e $HOME/.zsh/plugins/zsh-autosuggestions ]; then
+  source ~/.zsh/plugins/zsh-autosuggestions/autosuggestions.zsh
+  # Enable autosuggestions automatically
+  zle-line-init() {
+      zle autosuggest-start
+  }
+  zle -N zle-line-init
+  # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
+  # zsh-autosuggestions is designed to be unobtrusive)
+  bindkey '^T' autosuggest-toggle
+fi
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
