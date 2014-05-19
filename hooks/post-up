@@ -4,3 +4,15 @@ if [ ! -e $HOME/.vim/bundle/vundle ]; then
   git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 fi
 vim -u $HOME/.vimrc.bundles +BundleInstall +qa
+
+if [ ! -e $HOME/.zsh/plugins/zsh-autosuggestions ]; then
+  git clone https://github.com/tarruda/zsh-autosuggestions.git $HOME/.zsh/plugins/zsh-autosuggestions
+fi
+
+if [ ! -e $HOME/.zsh/plugins/zsh-history-substring-search ]; then
+  git clone https://github.com/zsh-users/zsh-history-substring-search.git $HOME/.zsh/plugins/zsh-history-substring-search
+fi
+
+if [ ! -e $HOME/.zsh/plugins/zsh-syntax-highlighting ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/plugins/zsh-syntax-highlighting
+fi
