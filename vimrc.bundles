@@ -35,6 +35,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'rking/ag.vim'
 Bundle 'jszakmeister/vim-togglecursor'
 Bundle 'ervandew/supertab'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
