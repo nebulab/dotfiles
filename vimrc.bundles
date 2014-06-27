@@ -34,7 +34,6 @@ Bundle 'vim-scripts/tComment'
 Bundle 'scrooloose/nerdtree'
 Bundle 'rking/ag.vim'
 Bundle 'jszakmeister/vim-togglecursor'
-Bundle 'ervandew/supertab'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 
