@@ -56,6 +56,9 @@ if which rbenv &>/dev/null ; then
   eval "$(rbenv init - --no-rehash)"
 fi
 
+# https://github.com/sstephenson/ruby-build/wiki#trouble-with-irb-or-pry
+RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
+
 # load thoughtbot/dotfiles scripts
 export PATH="$HOME/.bin:$PATH"
 
