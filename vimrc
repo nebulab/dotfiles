@@ -95,6 +95,12 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " NerdTree Toggle
 map <F2> :NERDTreeToggle<CR>
 
+" TagBar Toggle
+nmap <F3> :TagbarToggle<CR>
+
+" CtrlP Ctags
+nnoremap <leader>. :CtrlPTag<cr>
+
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
 

@@ -25,6 +25,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'pbrisbin/vim-mkdir'
 Bundle 'danro/rename.vim'
 Bundle 'rking/ag.vim'
+Bundle "majutsushi/tagbar"
 
 " UI
 Bundle 'bling/vim-airline'
