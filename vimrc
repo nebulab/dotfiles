@@ -27,6 +27,7 @@ set clipboard=unnamed
 set fenc=utf-8                    " sets the character encoding for the file of this buffer
 set mouse=a                       " enable mouse
 set ttyfast                       " This helps when using copy/paste with the mouse in an xterm and other terminals
+set ttymouse=xterm2
 set hidden                        " Handle multiple buffers better.
 set list listchars=tab:»·,trail:· " Display extra whitespace
 
