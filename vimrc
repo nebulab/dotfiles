@@ -1,35 +1,148 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General Configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
 
-" Leader
-let mapleader = ","
-
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set hlsearch      " highlight all search pattern matches
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set ttyfast       " This helps when using copy/paste with the mouse in an xterm and other terminals
-set colorcolumn=80
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
-
+" Loads plugins
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-filetype plugin indent on
+" Leader
+let mapleader = ","
+
+" Common
+set nobackup
+set nowritebackup
+set noswapfile                    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set hlsearch                      " highlight all search pattern matches
+set autowrite                     " Automatically :write before running commands
+set colorcolumn=80
+set clipboard=unnamed
+
+" Editing
+set fenc=utf-8                    " sets the character encoding for the file of this buffer
+set mouse=a                       " enable mouse
+set ttyfast                       " This helps when using copy/paste with the mouse in an xterm and other terminals
+set hidden                        " Handle multiple buffers better.
+set list listchars=tab:»·,trail:· " Display extra whitespace
+
+" Numbers configurations
+set number
+set numberwidth=5
+set relativenumber
+
+" Show current line in insert mode
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
+" Command Line configurations
+set wildmode=list:longest,list:full
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme Configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark
+colorscheme base16-tomorrow
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Airline
+let g:airline_powerline_fonts = 1
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" NERDTree
+let NERDTreeIgnore=['\.rbc$', '\~$']
+let NERDTreeShowLineNumbers=1
+
+" CtrlP
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
+endif
+
+" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
+
+" Run Test (Vroom)
+let g:vroom_use_vimux = 1
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = 40
+let g:vroom_map_keys = 1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key bindings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" NerdTree Toggle
+map <F2> :NERDTreeToggle<CR>
+
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Edit vimrc
+nmap <leader>vr :source $MYVIMRC<CR>
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" bind K to grep word under cursor
+nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Ag
+map <leader>/ :Ag<space>
+
+" Write and quit on the fly
+map <leader>w :write<CR>
+map <leader>q :quit<CR>
+map <leader>d :bd<CR>
+map <leader>Q :quitall<CR>
+
+" Vim Fugitive stuff
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gr :Gread<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gw :Gwrite<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gb :Gbrowse<CR>
+
+" Rails stuff
+map ga :A<CR>
+map gr :R<CR>
+
+" Split
+map <leader>\| :vsplit<CR>
+map <leader>- :split<CR>
+
+" Indent file
+map <f7> gg=G
+
+" Add pry to debug
+map <Leader>bp obinding.pry<esc>:w<cr>
+map <Leader>bP Obinding.pry<esc>:w<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specific file types configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup vimrcEx
   autocmd!
@@ -50,7 +163,6 @@ augroup vimrcEx
   autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
@@ -59,56 +171,9 @@ augroup vimrcEx
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
   autocmd BufRead,BufNewFile *.md set colorcolumn=80
+
+  autocmd BufRead,BufNewFile *.es6 set filetype=javascript
 augroup END
-
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" Numbers
-set number
-set numberwidth=5
-
-set wildmode=list:longest,list:full
-
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-
-" Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
