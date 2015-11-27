@@ -1,7 +1,11 @@
 [push]
   default = current
+[pull]
+  rebase = true
 [color]
   ui = auto
+[format]
+  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
 [alias]
   aa = add --all
   ap = add --patch
@@ -14,14 +18,21 @@
   pr = !hub pull-request
   st = status
   up = !git fetch origin && git rebase origin/master
+  lg = "!source ~/.githelpers && pretty_git_log"
+  l = !git lg -30
+  la = !git lg --all
+  ll = log --stat --abbrev-commit
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-[merge]
-  ff = only
-[include]
-  path = .gitconfig.local
 [commit]
   template = ~/.gitmessage
 [fetch]
   prune = true
+[credential]
+  helper = osxkeychain
+[hub]
+  protocol = https
+[include]
+  path = .gitconfig.local
