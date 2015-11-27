@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# add pair user public key(s)
+gh-auth add --users $1 --command="$( which tmux ) attach -t pair"

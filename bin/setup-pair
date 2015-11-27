@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# create an account alias
+sudo dscl . -append /Users/$USER RecordName Pair pair
+
+# configure sshd to only allow public-key authentication
+sudo sed -E -i.bak 's/^#?(PasswordAuthentication|ChallengeResponseAuthentication).*$/\1 no/' /etc/sshd_config
+
+# Install github-auth needed for 'add-pair-user' bin
+gem install github-auth
+
+# create authorized_keys if not exist
+if [ ! -f ~/.ssh/authorized_keys ]; then
+  touch ~/.ssh/authorized_keys
+fi
