@@ -1,9 +1,15 @@
 #!/bin/sh
 
-if [ ! -e $HOME/.vim/bundle/vundle ]; then
-  git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+if [ ! -e $HOME/.vim/bundle/neobundle.vim ]; then
+  curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+  sh ./install.sh
+  rm install.sh
 fi
-vim +BundleInstall +qa
+vim +NeoBundleInstall +qa
+
+if [ ! -e $HOME/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 if [ ! -e $HOME/.zsh/plugins/zsh-autosuggestions ]; then
   git clone https://github.com/tarruda/zsh-autosuggestions.git $HOME/.zsh/plugins/zsh-autosuggestions
