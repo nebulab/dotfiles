@@ -44,6 +44,11 @@ NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'danro/rename.vim'
 NeoBundle "majutsushi/tagbar"
 
+" AutoCompletition/Snippets
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
 " UI
 NeoBundle 'bling/vim-airline'
 NeoBundle 'jszakmeister/vim-togglecursor'
@@ -55,10 +60,6 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'vim-scripts/ctags.vim'
 NeoBundle 'vim-scripts/tComment'
-
-" Snippets
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
 
 " Tmux
 NeoBundle 'benmills/vimux'
