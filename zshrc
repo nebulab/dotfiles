@@ -92,7 +92,7 @@ if [ -e $HOME/.zsh/plugins/zsh-autosuggestions ]; then
   bindkey '^T' autosuggest-toggle
 fi
 
-# aliases
+# Aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Local config
