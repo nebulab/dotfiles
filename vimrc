@@ -50,6 +50,10 @@ let g:html_indent_tags = 'li\|p'
 set splitbelow
 set splitright
 
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+  set grepformat=%f:%l:%c:%m
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme Configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -65,16 +69,6 @@ let g:airline_powerline_fonts = 1
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
-" NERDTree
-let NERDTreeIgnore=['\.rbc$', '\~$']
-let NERDTreeShowLineNumbers=1
-
-" CtrlP
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_use_caching = 0 " ag is fast enough that CtrlP doesn't need to cache
-endif
 
 " Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
@@ -101,18 +95,39 @@ let g:tagbar_type_ruby = {
   \ ]
 \ }
 
+" Unite
+let g:unite_source_history_yank_enable=1
+
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S'
+let g:unite_source_grep_recursive_opt=''
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#profile('default', 'context', { 'start_insert': 1  })
+
+" VimFiler
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '✓'
+let g:vimfiler_readonly_file_icon = '✗'
+let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimfiler_quick_look_command = 'qlmanage -p'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" NerdTree Toggle
-map <F2> :NERDTreeToggle<CR>
+" VimFilerToggle
+nmap <F2> :VimFilerExplorer<CR>
 
 " TagBar Toggle
 nmap <F3> :TagbarToggle<CR>
-
-" CtrlP Ctags
-nnoremap <leader>. :CtrlPTag<cr>
 
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
@@ -126,9 +141,6 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " bind K to grep word under cursor
 nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Ag
-map <leader>/ :Ag<space>
 
 " Write and quit on the fly
 map <leader>w :write<CR>
@@ -158,6 +170,35 @@ map <f7> gg=G
 " Add pry to debug
 map <Leader>bp obinding.pry<esc>:w<cr>
 map <Leader>bP Obinding.pry<esc>:w<cr>
+
+" Unite
+nnoremap <c-p> :<C-u>Unite -no-split -buffer-name=files  -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <c-space> :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
+nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -auto-preview -start-insert grep:.<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  imap <buffer> <esc> <plug>(unite_exit)
+endfunction
+
+" Vimfiler
+autocmd FileType vimfiler call s:vimfiler_settings()
+function! s:vimfiler_settings()
+  nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+  nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
+  nmap <buffer> m <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_move_file)
+  nmap <buffer> d <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_delete_file)
+  nmap <buffer> <c-l> <c-w>l
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specific file types configurations
