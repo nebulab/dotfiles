@@ -45,9 +45,9 @@ NeoBundle 'danro/rename.vim'
 NeoBundle "majutsushi/tagbar"
 
 " AutoCompletition/Snippets
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 " UI
 NeoBundle 'bling/vim-airline'
@@ -71,6 +71,9 @@ NeoBundle 'edkolev/tmuxline.vim'
 " Tests
 NeoBundle 'skalnik/vim-vroom'
 
+" Syntastic
+NeoBundle 'scrooloose/syntastic'
+
 " Specific tecnologies
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'sunaku/vim-ruby-minitest'
@@ -78,6 +81,7 @@ NeoBundle 'greyblake/vim-preview'
 NeoBundle 'mustache/vim-mode'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
 NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-cucumber'

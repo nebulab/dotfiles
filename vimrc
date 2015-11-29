@@ -33,7 +33,7 @@ set list listchars=tab:»·,trail:· " Display extra whitespace
 
 " Numbers configurations
 set number
-set numberwidth=5
+set numberwidth=4
 set relativenumber
 
 " Show current line in insert mode
@@ -52,11 +52,16 @@ set splitright
 
 " Enable OmniCompletition
 set omnifunc=syntaxcomplete#Complete
+
+" Turn on language specific omnifuncs
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
+" Use ag to grep
 if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
@@ -111,7 +116,13 @@ let g:unite_source_grep_recursive_opt=''
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#profile('default', 'context', { 'start_insert': 1  })
+call unite#custom#profile('default', 'context', { 'start_insert': 1, 'prompt': '» ' })
+
+if executable('ag')
+  let g:unite_source_rec_async_command =
+    \ ['ag', '--follow', '--nocolor', '--nogroup',
+    \  '--hidden', '-g', '']
+endif
 
 " VimFiler
 let g:vimfiler_as_default_explorer = 1
@@ -126,16 +137,20 @@ let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimfiler_quick_look_command = 'qlmanage -p'
 
-" NeoComplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#auto_completion_start_length = 2
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+" SuperTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -190,11 +205,11 @@ map <Leader>bP Obinding.pry<esc>:w<cr>
 
 " Unite
 nnoremap <c-p> :<C-u>Unite -no-split -buffer-name=files  -start-insert file_rec/async:!<cr>
+nnoremap <c-t> :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 " nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
+" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+" nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -auto-preview -start-insert grep:.<cr>
 
 " Custom mappings for the unite buffer
@@ -217,22 +232,9 @@ function! s:vimfiler_settings()
   nmap <buffer> <c-l> <c-w>l
 endfunction
 
-" NeoComplete
-
-" Plugin key-mappings.
-inoremap <expr> <C-g> neocomplete#undo_completion()
-inoremap <expr> <C-l> neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: cancel popup and insert newline.
-inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
-" <TAB>: completion.
-inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr> <C-y> neocomplete#close_popup()
-inoremap <expr> <C-e> neocomplete#cancel_popup()
+" Syntastic
+nnoremap <leader>ss :SyntasticCheck<CR>
+nnoremap <leader>st :SyntasticToggleMode<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Specific file types configurations
