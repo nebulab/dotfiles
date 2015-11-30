@@ -32,7 +32,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'danro/rename.vim'
-NeoBundle "majutsushi/tagbar"
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'rking/ag.vim'
 
 " AutoCompletition/Snippets
 NeoBundle 'ervandew/supertab'

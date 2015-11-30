@@ -185,6 +185,9 @@ map <Leader>bP Obinding.pry<esc>:w<cr>
 " CtrlP
 map <c-t> :CtrlPBuffer<CR>
 
+" Ag
+map <leader>/ :Ag<space>
+
 " Syntastic
 nnoremap <leader>ss :SyntasticCheck<CR>
 nnoremap <leader>st :SyntasticToggleMode<CR>
