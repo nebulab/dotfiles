@@ -1,0 +1,14 @@
+# Install neovim
+brew tap neovim/homebrew-neovim
+brew_install_or_upgrade --HEAD neovim
+
+# Install ag
+brew_install_or_upgrade 'ag'
+
+# Install rbenv-default-gems
+git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+
+
+if [ -f "$HOME/.laptop.personal" ]; then
+  . "$HOME/.laptop.personal"
+fi
