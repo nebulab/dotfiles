@@ -134,7 +134,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 " Key bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" VimFilerToggle
+" NerdTree
 nmap <F2> :NERDTreeToggle<CR>
 
 " TagBar Toggle
@@ -181,6 +181,9 @@ map <f7> gg=G
 " Add pry to debug
 map <Leader>bp obinding.pry<esc>:w<cr>
 map <Leader>bP Obinding.pry<esc>:w<cr>
+
+" CtrlP
+map <c-t> :CtrlPBuffer<CR>
 
 " Syntastic
 nnoremap <leader>ss :SyntasticCheck<CR>
