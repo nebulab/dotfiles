@@ -29,6 +29,7 @@ NeoBundle 'tpope/vim-fugitive'
 " File management
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'danro/rename.vim'
 NeoBundle "majutsushi/tagbar"

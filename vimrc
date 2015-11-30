@@ -33,7 +33,7 @@ set list listchars=tab:»·,trail:· " Display extra whitespace
 
 " Numbers configurations
 set number
-set numberwidth=4
+set numberwidth=5
 set relativenumber
 
 " Show current line in insert mode
