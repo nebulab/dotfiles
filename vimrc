@@ -79,6 +79,10 @@ colorscheme base16-tomorrow
 " Airline
 let g:airline_powerline_fonts = 1
 
+" NERDTree
+let NERDTreeIgnore=['\.rbc$', '\~$']
+let NERDTreeShowLineNumbers=1
+
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
