@@ -107,35 +107,14 @@ let g:tagbar_type_ruby = {
   \ ]
 \ }
 
-" Unite
-let g:unite_source_history_yank_enable=1
-
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S'
-let g:unite_source_grep_recursive_opt=''
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#profile('default', 'context', { 'start_insert': 1, 'prompt': '» ' })
-
+" CtrlP
 if executable('ag')
-  let g:unite_source_rec_async_command =
-    \ ['ag', '--follow', '--nocolor', '--nogroup',
-    \  '--hidden', '-g', '']
-endif
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-" VimFiler
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '✓'
-let g:vimfiler_readonly_file_icon = '✗'
-let g:vimfiler_enable_auto_cd = 1
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimfiler_quick_look_command = 'qlmanage -p'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -156,7 +135,7 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " VimFilerToggle
-nmap <F2> :VimFilerExplorer<CR>
+nmap <F2> :NERDTreeToggle<CR>
 
 " TagBar Toggle
 nmap <F3> :TagbarToggle<CR>
@@ -202,36 +181,6 @@ map <f7> gg=G
 " Add pry to debug
 map <Leader>bp obinding.pry<esc>:w<cr>
 map <Leader>bP Obinding.pry<esc>:w<cr>
-
-" Unite
-nnoremap <c-p> :<C-u>Unite -no-split -buffer-name=files  -start-insert file_rec/async:!<cr>
-nnoremap <c-t> :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-" nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-" nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-" nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -auto-preview -start-insert grep:.<cr>
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
-endfunction
-
-" Vimfiler
-autocmd FileType vimfiler call s:vimfiler_settings()
-function! s:vimfiler_settings()
-  nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-  nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
-  nmap <buffer> m <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_move_file)
-  nmap <buffer> d <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_delete_file)
-  nmap <buffer> s <Plug>(vimfiler_split_edit_file)
-  nmap <buffer> <c-l> <c-w>l
-endfunction
 
 " Syntastic
 nnoremap <leader>ss :SyntasticCheck<CR>
