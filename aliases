@@ -30,5 +30,11 @@ alias m="migrate"
 alias rk="rake"
 alias s="rspec"
 
+# Tmux
+alias txpair="tmux new -s pair"
+alias txnew="tmux new -s"
+alias txatt="tmux attach -t"
+alias txls="tmux list-sessions"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
