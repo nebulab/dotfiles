@@ -44,6 +44,17 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
 NeoBundle 'tpope/vim-sensible' " Defaults everyone can agree on
+NeoBundle 'Shougo/vimproc.vim', {
+			\ 'build' : {
+			\     'windows' : 'tools\\update-dll-mingw',
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make',
+			\     'linux' : 'make',
+			\     'unix' : 'gmake',
+			\    },
+			\ }
+NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
+
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
@@ -75,3 +86,26 @@ set number				  " Display line numbers
 set numberwidth=5			  " Change line numbers column width
 set relativenumber			  " Display line numbers relative to the line with the cursor
 set wildmode=list:longest,full            " Command Line configurations 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Options {{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite {{{2
+let g:unite_source_history_yank_enable=1
+
+" let g:unite_source_grep_command='ag'
+" let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S'
+" let g:unite_source_grep_recursive_opt=''
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#profile('default', 'context', { 'start_insert': 1  })
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Keymaps {{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite {{{2
+nnoremap <c-p> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
+nnoremap <c-t> :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
+nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -auto-preview -start-insert grep:.<cr>
