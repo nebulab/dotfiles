@@ -2,7 +2,7 @@
 " vimrc
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" License {{{
+" License {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copyright 2016 Nebulab
 
@@ -19,7 +19,7 @@
 " limitations under the License.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins {{{
+" Plugins {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
@@ -55,3 +55,23 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Settings {{{1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ","			  " Leader
+set nobackup				  " - Don't let Vim to ever write a backup files
+set nowritebackup			  " -
+set noswapfile				  " -
+set hlsearch				  " Highlight all search pattern matches
+set autowrite				  " Automatically :write before running commands
+set colorcolumn=80			  " Highlight 80 column
+set clipboard=unnamed			  " Copy and Paste from the system clipboard 
+set mouse=a				  " Enable mouse use in all modes
+set ttyfast				  " Send more characters for redraws
+set ttymouse=xterm2			  " Changes what 'mouse codes' will recognise, xterm2 work well with iTerm2 in Mac OS
+set hidden				  " Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed
+set number				  " Display line numbers
+set numberwidth=5			  " Change line numbers column width
+set relativenumber			  " Display line numbers relative to the line with the cursor
+set wildmode=list:longest,full            " Command Line configurations 
