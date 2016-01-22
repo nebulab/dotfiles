@@ -108,6 +108,15 @@ call unite#custom#profile('default', 'context', { 'start_insert': 1  })
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymaps {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom {{{2
+nnoremap <leader><leader> <c-^>           " Switch between the last two files
+nmap <leader>vr :source $MYVIMRC<CR>      " Reload vimrc
+nmap <leader>v :tabedit $MYVIMRC<CR>      " Edit vimrc
+map <leader>w :write<CR>                  " Save file
+map <leader>q :quit<CR>                   " Quit
+map <leader>d :bd<CR>                     " Close current buffer
+map <leader>Q :quitall<CR>                " Quit All
+
 " Unite {{{2
 nnoremap <c-p> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <c-t> :<C-u>Unite -no-split -buffer-name=buffer -quick-match buffer<cr>
