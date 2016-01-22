@@ -57,8 +57,10 @@ NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
 NeoBundle 'bling/vim-airline'  " Lean & mean status/tabline for vim that's light as air
 
 " Tmux Related Plugins {{{2
-NeoBundle 'sjl/vitality.vim'       " Make Vim play nicely with iTerm 2 and tmux
-NeoBundle 'edkolev/tmuxline.vim'   " Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
+NeoBundle 'christoomey/vim-tmux-navigator'        " Seamless navigation between tmux panes and vim splits
+NeoBundle 'tmux-plugins/vim-tmux-focus-events'    " Make terminal vim and tmux work better together.
+NeoBundle 'tmux-plugins/vim-tmux'                 " Vim plugin for tmux.conf
+NeoBundle 'edkolev/tmuxline.vim'                  " Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
