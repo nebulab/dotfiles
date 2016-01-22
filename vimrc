@@ -54,6 +54,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\    },
 			\ }
 NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
+NeoBundle 'bling/vim-airline'  " Lean & mean status/tabline for vim that's light as air
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
@@ -90,6 +91,9 @@ set wildmode=list:longest,full            " Command Line configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Options {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline {{{2
+let g:airline_powerline_fonts = 1
+
 " Unite {{{2
 let g:unite_source_history_yank_enable=1
 
