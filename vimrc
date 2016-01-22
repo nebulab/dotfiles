@@ -5,6 +5,8 @@
 if 0 | endif
 
 if has('vim_starting')
+  " Use Vim settings, rather then Vi settings. This setting must be as early as
+  " possible, as it has side effects.
   if &compatible
     set nocompatible               " Be iMproved
   endif
