@@ -21,6 +21,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins {{{1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Setup {{{2
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
@@ -43,6 +44,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
+" Common Plugins {{{2
 NeoBundle 'tpope/vim-sensible' " Defaults everyone can agree on
 NeoBundle 'Shougo/vimproc.vim', {
 			\ 'build' : {
@@ -53,14 +55,20 @@ NeoBundle 'Shougo/vimproc.vim', {
 			\     'unix' : 'gmake',
 			\    },
 			\ }
+
+" File managers/explorers {{{2
 NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
+
+" UI {{{2
 NeoBundle 'bling/vim-airline'  " Lean & mean status/tabline for vim that's light as air
 
 " Tmux Related Plugins {{{2
 NeoBundle 'christoomey/vim-tmux-navigator'        " Seamless navigation between tmux panes and vim splits
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'    " Make terminal vim and tmux work better together.
-NeoBundle 'tmux-plugins/vim-tmux'                 " Vim plugin for tmux.conf
 NeoBundle 'edkolev/tmuxline.vim'                  " Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
+
+" Editing Plugins {{{2
+NeoBundle 'tmux-plugins/vim-tmux'                 " Vim plugin for tmux.conf
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
