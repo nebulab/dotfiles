@@ -67,6 +67,7 @@ NeoBundle 'jszakmeister/vim-togglecursor'         " Toggle the cursor shape in t
 
 " Editing {{{2
 NeoBundle 'tpope/vim-commentary'                  " commentary.vim: comment stuff out
+NeoBundle 'editorconfig/editorconfig-vim'         " EditorConfig plugin for Vim
 
 " Git {{{2
 NeoBundle 'airblade/vim-gitgutter'                " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
