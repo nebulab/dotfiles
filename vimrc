@@ -63,6 +63,10 @@ NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
 NeoBundle 'bling/vim-airline'                     " Lean & mean status/tabline for vim that's light as air
 NeoBundle 'jszakmeister/vim-togglecursor'         " Toggle the cursor shape in the terminal for Vim
 
+" Git {{{2
+NeoBundle 'airblade/vim-gitgutter'                " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+NeoBundle 'tpope/vim-fugitive'                    " fugitive.vim: a Git wrapper so awesome, it should be illegal
+
 " Tmux Related Plugins {{{2
 NeoBundle 'christoomey/vim-tmux-navigator'        " Seamless navigation between tmux panes and vim splits
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'    " Make terminal vim and tmux work better together.
