@@ -82,6 +82,9 @@ NeoBundle 'tpope/vim-bundler'                     " bundler.vim: Lightweight sup
 NeoBundle 'tpope/vim-rake'                        " rake.vim: it's like rails.vim without the rails
 NeoBundle 'tpope/vim-endwise'                     " endwise.vim: wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
 
+" Syntax {{{2
+NeoBundle 'sheerun/vim-polyglot'                  " A solid language pack for Vim.
+
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
