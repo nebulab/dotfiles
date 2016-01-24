@@ -76,6 +76,12 @@ NeoBundle 'tmux-plugins/vim-tmux-focus-events'    " Make terminal vim and tmux w
 NeoBundle 'edkolev/tmuxline.vim'                  " Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
 NeoBundle 'tmux-plugins/vim-tmux'                 " Vim plugin for tmux.conf
 
+" Ruby/Rails {{{2
+NeoBundle 'tpope/vim-rails'                       " rails.vim: Ruby on Rails power tools
+NeoBundle 'tpope/vim-bundler'                     " bundler.vim: Lightweight support for Ruby's Bundler
+NeoBundle 'tpope/vim-rake'                        " rake.vim: it's like rails.vim without the rails
+NeoBundle 'tpope/vim-endwise'                     " endwise.vim: wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
+
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
