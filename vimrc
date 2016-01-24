@@ -87,6 +87,7 @@ NeoBundle 'tpope/vim-bundler'                     " bundler.vim: Lightweight sup
 NeoBundle 'tpope/vim-rake'                        " rake.vim: it's like rails.vim without the rails
 NeoBundle 'tpope/vim-endwise'                     " endwise.vim: wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
 NeoBundle 'sunaku/vim-ruby-minitest'              " Vim highlighting & completion for MiniTest
+NeoBundle 'skalnik/vim-vroom'                     " A vim plugin for running your Ruby tests
 
 " Fish {{{2
 NeoBundle 'dag/vim-fish'                          " Vim support for editing fish scripts
