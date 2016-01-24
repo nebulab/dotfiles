@@ -89,6 +89,7 @@ NeoBundle 'dag/vim-fish'                          " Vim support for editing fish
 
 " Syntax {{{2
 NeoBundle 'sheerun/vim-polyglot'                  " A solid language pack for Vim.
+NeoBundle 'kylef/apiblueprint.vim'                " This vim plugin brings syntax highlighting and linting for API Blueprint.
 
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
