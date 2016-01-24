@@ -60,7 +60,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/unite.vim'   " Unite and create user interfaces
 
 " UI {{{2
-NeoBundle 'bling/vim-airline'  " Lean & mean status/tabline for vim that's light as air
+NeoBundle 'bling/vim-airline'                     " Lean & mean status/tabline for vim that's light as air
+NeoBundle 'jszakmeister/vim-togglecursor'         " Toggle the cursor shape in the terminal for Vim
 
 " Tmux Related Plugins {{{2
 NeoBundle 'christoomey/vim-tmux-navigator'        " Seamless navigation between tmux panes and vim splits
