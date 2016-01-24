@@ -59,6 +59,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " File managers/explorers {{{2
 NeoBundle 'Shougo/unite.vim'                      " Unite and create user interfaces
 NeoBundle 'pbrisbin/vim-mkdir'                    " Automatically create any non-existent directories before writing the buffer.
+NeoBundle 'danro/rename.vim'                      " Rename the current file in the vim buffer + retain relative path.
 
 " UI {{{2
 NeoBundle 'bling/vim-airline'                     " Lean & mean status/tabline for vim that's light as air
