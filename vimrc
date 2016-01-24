@@ -71,6 +71,7 @@ NeoBundle 'airblade/vim-gitgutter'                " A Vim plugin which shows a g
 NeoBundle 'tpope/vim-fugitive'                    " fugitive.vim: a Git wrapper so awesome, it should be illegal
 
 " Tmux {{{2
+NeoBundle 'benmills/vimux'                        " vim plugin to interact with tmux
 NeoBundle 'christoomey/vim-tmux-navigator'        " Seamless navigation between tmux panes and vim splits
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'    " Make terminal vim and tmux work better together.
 NeoBundle 'edkolev/tmuxline.vim'                  " Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
