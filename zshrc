@@ -8,17 +8,9 @@ git_prompt_info() {
 setopt promptsubst
 export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
 
-# load our own completion functions
-fpath=(~/.zsh/completion $fpath)
-
 # completion
 autoload -U compinit
 compinit
-
-# load custom executable functions
-for function in ~/.zsh/functions/*; do
-  source $function
-done
 
 # makes color constants available
 autoload -U colors
@@ -64,33 +56,6 @@ export PATH="$HOME/.bin:$PATH"
 
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
-
-# Syntax Highlighting
-if [ -e $HOME/.zsh/plugins/zsh-syntax-highlighting ]; then
-  source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-# Setup History Suggestions
-if [ -e $HOME/.zsh/plugins/zsh-history-substring-search ]; then
-  source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-  zmodload zsh/terminfo
-  # bind UP and DOWN arrow keys
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-fi
-
-# Setup Autosuggestions
-if [ -e $HOME/.zsh/plugins/zsh-autosuggestions ]; then
-  source ~/.zsh/plugins/zsh-autosuggestions/autosuggestions.zsh
-  # Enable autosuggestions automatically
-  zle-line-init() {
-      zle autosuggest-start
-  }
-  zle -N zle-line-init
-  # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
-  # zsh-autosuggestions is designed to be unobtrusive)
-  bindkey '^T' autosuggest-toggle
-fi
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
