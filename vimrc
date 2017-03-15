@@ -70,7 +70,7 @@ endif
 " Theme Configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
-colorscheme base16-tomorrow
+colorscheme gotham
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configurations

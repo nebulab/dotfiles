@@ -20,7 +20,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tpope/vim-sensible'
 
 " Templates
+NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'whatyouhide/vim-gotham'
 
 " Git
 NeoBundle 'airblade/vim-gitgutter'
