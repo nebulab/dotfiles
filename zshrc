@@ -43,11 +43,6 @@ bindkey "[C" end-of-line
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# load rbenv if available
-if which rbenv &>/dev/null ; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-
 # https://github.com/sstephenson/ruby-build/wiki#trouble-with-irb-or-pry
 RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 
@@ -62,3 +57,8 @@ export PATH=".git/safe/../../bin:$PATH"
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# load rbenv if available
+if which rbenv &>/dev/null ; then
+  eval "$(rbenv init - --no-rehash)"
+fi
